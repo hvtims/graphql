@@ -57,7 +57,7 @@ async function sendlogindata(username, password) {
   const data = await res.json()
   if (res.ok){
     console.log("watkiiiiiiiiiii")
-     localStorage.setItem('token',data)
+     localStorage.setItem('jwt',data)
        showlogedin()
   }
   if (!res.ok){

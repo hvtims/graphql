@@ -206,20 +206,3 @@ body{
 }
 
 /*  HAAAADAAAA  NOTIFICATION    */ 
-.notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: rgba(30, 30, 30, 0.9);
-  color: var(--text-primary);
-  padding: 1rem 1.5rem;
-  border-left: 4px solid var(--accent-primary);
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  font-size: 1rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  z-index: 1000;
-  display: none;
-  animation: fadeIn 0.5s ease-out, pulse 2s infinite;
-  max-width: 300px;
-}
