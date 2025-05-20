@@ -1,3 +1,4 @@
+import {showNotification} from "./utils.js"
 function showlogedin(){
   console.log("rak hnaya ajmimo")
   const root = document.getElementById("root")
@@ -60,7 +61,7 @@ async function sendlogindata(username, password) {
        showlogedin()
   }
   if (!res.ok){
-    console.log("endk problim ajmimo")
+    showNotification("Wrong credentials")
   }
  } catch(error){    
         console.error("Login error:", error);
