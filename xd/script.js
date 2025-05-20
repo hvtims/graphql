@@ -1,4 +1,4 @@
-import {showNotification} from "./utils.js"
+import {showNotification,Getcredontial } from "./utils.js"
 function showlogedin(){
   console.log("rak hnaya ajmimo")
   const root = document.getElementById("root")
@@ -59,6 +59,7 @@ async function sendlogindata(username, password) {
     console.log("watkiiiiiiiiiii")
      localStorage.setItem('jwt',data)
        showlogedin()
+       Getcredontial()
   }
   if (!res.ok){
     showNotification("Wrong credentials")
