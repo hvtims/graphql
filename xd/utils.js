@@ -106,11 +106,11 @@ export async function Getauditdata() {
   const winrate = ((succes / tottal_filtered_audits.length)*100).toFixed(1) + "%"
   const loserate  = ((fail /tottal_filtered_audits.length)*100).toFixed(1) + "%"
   const total_audits = tottal_filtered_audits.length
-  console.log(total_audits);
+  // console.log(total_audits);
   renderAuditData(total_audits, succes, fail, winrate, loserate)
 
-  console.log(winrate);
-  console.log(loserate);
+  // console.log(winrate);
+  // console.log(loserate);
 }
 function renderAuditData(total, success, fail, winrate, loserate) {
   const root = document.getElementById('audit-root');

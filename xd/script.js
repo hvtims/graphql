@@ -1,6 +1,6 @@
 import {showNotification,Getcredontial,Getauditdata } from "./utils.js"
 function showlogedin(){
-  console.log("rak hnaya ajmimo")
+  console.log("rak hna ajmimo")
   const root = document.getElementById("root")
   root.innerHTML= ''
   const countainer = document.createElement('div')
