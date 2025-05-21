@@ -57,6 +57,7 @@ async function sendlogindata(username, password) {
        showlogedin()
        Getcredontial()
        Getauditdata()
+       showNotification("Login successful")
   }
   if (!res.ok){
     showNotification("Wrong credentials")
