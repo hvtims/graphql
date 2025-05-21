@@ -57,6 +57,7 @@ function renderUserProfile( login, firstName, lastName, email , xp , campus , re
   const root = document.getElementById('profile-root')
   if (!root) return
   root.innerHTML = `
+      <h1> Welcome Dear ${firstName} </h1>
     <div class="auth-form-container">
       <div class="auth-form">
         <h2>My Zone01 Profile</h2>
