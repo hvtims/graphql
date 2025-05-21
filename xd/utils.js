@@ -70,3 +70,81 @@ function renderUserProfile( login, firstName, lastName, email , xp , campus , re
       </div>
     </div>`
 }
+export async function Getauditdata() {
+  const audit_query = `
+    {
+  user {
+    audits {   
+      grade
+  }
+}
+}
+  `
+  const jwt = localStorage.getItem("jwt")
+  const response  = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql',{
+
+      method : "POST",
+      headers : {
+        "Content-Type" : "application/json",
+        "Authorization" : `Bearer ${jwt}`
+      },
+      body : JSON.stringify({query : audit_query})
+
+  })
+  const tki = await response.json()
+  const tottal_filtered_audits = tki.data.user[0].audits.filter(audit => audit.grade !== null);
+  let succes = 0
+  let fail = 0  
+  tottal_filtered_audits.forEach(e => {   
+    if (e.grade >= 1 ){
+      succes++
+    }else{
+      fail++
+    }
+  });
+  const winrate = ((succes / tottal_filtered_audits.length)*100).toFixed(1) + "%"
+  const loserate  = ((fail /tottal_filtered_audits.length)*100).toFixed(1) + "%"
+  const total_audits = tottal_filtered_audits.length
+  console.log(total_audits);
+  renderAuditData(total_audits, succes, fail, winrate, loserate)
+
+  console.log(winrate);
+  console.log(loserate);
+}
+function renderAuditData(total, success, fail, winrate, loserate) {
+  const root = document.getElementById('audit-root');
+  
+  if (!root) return;
+  
+  root.innerHTML = `
+    <div class="auth-form-container">
+      <div class="auth-form">
+        <h2>Audit Statistics</h2>
+        
+        <!-- Large percentage display -->
+        <div class="win-rate-display">${winrate}</div>
+        
+        <!-- Combined win/lose progress bar -->
+        <div class="audit-progress">
+          <div class="progress-track">
+            <div class="win-progress" style="width: ${winrate}"></div>
+            <div class="lose-progress" style="width: ${loserate}"></div>
+          </div>
+          <div class="progress-marks">
+            <span>0%</span>
+            <span>50%</span>
+            <span>100%</span>
+          </div>
+        </div>
+        
+        <!-- Statistics in your existing profile style -->
+        <div class="audit-details">
+          <p class="profile-row"><strong>Total Audits:</strong> ${total}</p>
+          <p class="profile-row"><strong>Success:</strong> ${success}</p>
+          <p class="profile-row"><strong>Fail:</strong> ${fail}</p>
+          <p class="profile-row"><strong>Win Rate:</strong> ${winrate}</p>
+          <p class="profile-row"><strong>Lose Rate:</strong> ${loserate}</p>
+        </div>
+      </div>
+    </div>`;
+}

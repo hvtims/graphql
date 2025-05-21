@@ -233,3 +233,148 @@ body{
 .profile-row strong {
   color: var(--text-primary);
 }
+/* Existing styles */
+.profile-row {
+  font-size: 1rem;
+  margin: .2rem 0;
+  color: var(--text-secondary);
+}
+
+.profile-row strong {
+  color: var(--text-primary);
+}
+
+/* New styles for success rate bar */
+.success-rate-container {
+  margin: 1rem 0;
+}
+
+.success-rate-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.success-rate-bar {
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+  display: flex;
+}
+
+.success-rate-fill {
+  height: 100%;
+  background-color: #4CAF50; /* Green for success */
+}
+
+.fail-rate-fill {
+  height: 100%;
+  background-color: #f44336; /* Red for fail */
+}
+
+.success-rate-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+/* Success Rate Header */
+.success-rate-header {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 1rem 0 0.5rem;
+}
+
+/* Progress Bar Styles */
+.progress-bar-container {
+  margin: 0.5rem 0 1.5rem;
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 0.3rem;
+}
+
+.win-portion {
+  height: 100%;
+  background-color: #4CAF50; /* Green for wins */
+}
+
+.lose-portion {
+  height: 100%;
+  background-color: #f44336; /* Red for losses */
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 0 5px;
+}
+
+/* Keep your existing profile row styles */
+.profile-row {
+  font-size: 1rem;
+  margin: .2rem 0;
+  color: var(--text-secondary);
+}
+
+.profile-row strong {
+  color: var(--text-primary);
+}
+/* Audit Stats Specific Styles */
+.win-rate-display {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0;
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.audit-progress {
+  margin: 1.5rem 0 2rem;
+}
+
+.progress-track {
+  height: 16px;
+  background-color: var(--input-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 6px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.win-progress {
+  height: 100%;
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+}
+
+.lose-progress {
+  height: 100%;
+  background: linear-gradient(135deg, #f44336, #c62828);
+}
+
+.progress-marks {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  padding: 0 4px;
+}
+
+.audit-details {
+  margin-top: 1.5rem;
+}
