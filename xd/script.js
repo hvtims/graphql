@@ -1,12 +1,8 @@
-import {showNotification,Getcredontial,Getauditdata } from "./utils.js"
+import {Getcredontial,Getauditdata } from "./getdata.js"
+import { showNotification } from "./utils.js";
 function showlogedin(){
-  console.log("rak hna ajmimo")
   const root = document.getElementById("root")
   root.innerHTML= ''
-  const countainer = document.createElement('div')
-  countainer.textContent = "test ajmimo "
-  root.appendChild(countainer)
-
 }
 function showAuthFormLogin() {
   const root = document.getElementById('root');
