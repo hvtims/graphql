@@ -51,7 +51,8 @@ async function sendlogindata(username, password) {
     }
   })
   const data = await res.json()
-  if (res.ok){
+  if (res.ok){  
+
     console.log("watkiiiiiiiiiii")
      localStorage.setItem('jwt',data)
        showlogedin()
@@ -60,6 +61,10 @@ async function sendlogindata(username, password) {
        showNotification("Login successful")
   }
   if (!res.ok){
+    let name = document.querySelector('[name="username"]')
+    let pass = document.querySelector('[name="password"]')
+    name.value=""
+    pass.value =""  
     showNotification("Wrong credentials")
   }
  } catch(error){    
