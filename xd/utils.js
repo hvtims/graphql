@@ -143,8 +143,8 @@ function renderAuditData(total, success, fail, winrate, loserate) {
           <p class="profile-row"><strong>Total Audits:</strong> ${total}</p>
           <p class="profile-row"><strong>Success:</strong> ${success}</p>
           <p class="profile-row"><strong>Fail:</strong> ${fail}</p>
-          <p class="profile-row"><strong>Win Rate:</strong> ${winrate}</p>
-          <p class="profile-row"><strong>Lose Rate:</strong> ${loserate}</p>
+          <p class="profile-row"><strong>Succes rate Rate:</strong> ${winrate}</p>
+          <p class="profile-row"><strong>Fail rate Rate:</strong> ${loserate}</p>
         </div>
       </div>
     </div>`;
