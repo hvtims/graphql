@@ -84,6 +84,46 @@ export async function Getauditdata() {
   const winrate = ((succes / tottal_filtered_audits.length)*100).toFixed(1) + "%"
   const loserate  = ((fail /tottal_filtered_audits.length)*100).toFixed(1) + "%"
   const total_audits = tottal_filtered_audits.length
+  Getgraphdata()
   renderAuditData(total_audits, succes, fail, winrate, loserate)
 }
 
+export async function Getgraphdata(){
+    const graph_query = `
+      {
+  pro: progress(where:{eventId : {_eq : 41},object:{type:{_eq : "project"}}}){
+    object {
+      name
+    }
+    isDone
+    createdAt
+  }
+}
+    `
+    const jwt = localStorage.getItem('jwt')
+    const response = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql',{
+        method : "POST",
+        headers :{
+            "Content-Type" : "application/json",
+            "Authorization" : `Bearer ${jwt}`
+        },
+        body : JSON.stringify({query : graph_query})
+    })
+    const tki = await response.json()
+   
+    
+    // console.log(tki.data[0].pro[0].isDone)
+    const seen = {}
+    const uniqueProjects = []
+    for (let i = 0; i < tki.data.pro.length; i++) {
+        const item = tki.data.pro[i]    
+        const name = item.object.name
+         const istrue = tki.data.pro[i].isDone 
+        if ((!seen[name]) && (istrue == true))  {
+            seen[name] = true
+            uniqueProjects.push(item)
+        }
+    }
+    console.log(uniqueProjects);
+    
+  }
