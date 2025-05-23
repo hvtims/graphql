@@ -1,5 +1,6 @@
 import { renderUserProfile } from "./render.js";
 import  { renderAuditData } from "./render.js";
+import { renderGraph } from "./render.js";
 //--------------------- DATA QUERY
 export async function Getcredontial (){
   const query_data = `
@@ -124,6 +125,6 @@ export async function Getgraphdata(){
             uniqueProjects.push(item)
         }
     }
-    console.log(uniqueProjects);
+    renderGraph(uniqueProjects)
     
   }

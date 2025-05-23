@@ -9,7 +9,6 @@
   100% { box-shadow: 0 0 0 0 rgba(123, 31, 162, 0); }
 }
 
-/* Dark theme with purple accent */
 :root {
   --bg-dark: #121212;
   --bg-darker: #0a0a0a;
@@ -20,16 +19,16 @@
   --input-bg: #1e1e1e;
   --input-border: #333;
 }
-*{
-    margin: 0%;
-    padding: 0%;
-}
-body{
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-darker));
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
+body {
+  background: linear-gradient(135deg, var(--bg-dark), var(--bg-darker));
+}
 
-/* Base styles */
 .auth-form-container {
   display: flex;
   flex-direction: column;
@@ -47,8 +46,7 @@ body{
   backdrop-filter: blur(10px);
   padding: 2.5rem;
   border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(123, 31, 162, 0.2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(123, 31, 162, 0.2);
   width: 90%;
   max-width: 420px;
   display: flex;
@@ -60,8 +58,7 @@ body{
 
 .auth-form:hover {
   transform: scale(1);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
-              0 0 0 1px var(--accent-primary);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-primary);
 }
 
 .auth-form-container h2 {
@@ -159,13 +156,12 @@ body{
   width: 100%;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .auth-form {
     padding: 2rem 1.5rem;
     width: 85%;
   }
-  
+
   .auth-form-container h2 {
     font-size: 1.7rem;
   }
@@ -177,18 +173,17 @@ body{
     width: 90%;
     border-radius: 12px;
   }
-  
+
   .auth-form input[type="text"],
   .auth-form input[type="password"] {
     padding: 0.8rem 1rem;
   }
-  
+
   .auth-form button[type="submit"] {
     padding: 0.9rem;
   }
 }
 
-/* Loading animation */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -205,7 +200,6 @@ body{
   vertical-align: middle;
 }
 
-/*  HAAAADAAAA  NOTIFICATION    */ 
 .notification {
   position: fixed;
   top: 20px;
@@ -223,17 +217,7 @@ body{
   animation: fadeIn 0.5s ease-out, pulse 2s infinite;
   max-width: 300px;
 }
-/*  ------------------------------------------------------------------------------------------------------------------------*/
-.profile-row {
-  font-size: 1rem;
-  margin: .2rem 0;
-  color: var(--text-secondary);
-}
 
-.profile-row strong {
-  color: var(--text-primary);
-}
-/* Existing styles */
 .profile-row {
   font-size: 1rem;
   margin: .2rem 0;
@@ -244,7 +228,6 @@ body{
   color: var(--text-primary);
 }
 
-/* New styles for success rate bar */
 .success-rate-container {
   margin: 1rem 0;
 }
@@ -268,12 +251,12 @@ body{
 
 .success-rate-fill {
   height: 100%;
-  background-color: #4CAF50; /* Green for success */
+  background-color: #4CAF50;
 }
 
 .fail-rate-fill {
   height: 100%;
-  background-color: #f44336; /* Red for fail */
+  background-color: #f44336;
 }
 
 .success-rate-labels {
@@ -282,7 +265,7 @@ body{
   color: var(--text-secondary);
   font-size: 0.8rem;
 }
-/* Success Rate Header */
+
 .success-rate-header {
   font-size: 1.8rem;
   font-weight: bold;
@@ -291,7 +274,6 @@ body{
   margin: 1rem 0 0.5rem;
 }
 
-/* Progress Bar Styles */
 .progress-bar-container {
   margin: 0.5rem 0 1.5rem;
 }
@@ -307,12 +289,12 @@ body{
 
 .win-portion {
   height: 100%;
-  background-color: #4CAF50; /* Green for wins */
+  background-color: #4CAF50;
 }
 
 .lose-portion {
   height: 100%;
-  background-color: #f44336; /* Red for losses */
+  background-color: #f44336;
 }
 
 .progress-labels {
@@ -323,17 +305,6 @@ body{
   padding: 0 5px;
 }
 
-/* Keep your existing profile row styles */
-.profile-row {
-  font-size: 1rem;
-  margin: .2rem 0;
-  color: var(--text-secondary);
-}
-
-.profile-row strong {
-  color: var(--text-primary);
-}
-/* Audit Stats Specific Styles */
 .win-rate-display {
   font-size: 2.2rem;
   font-weight: 700;
@@ -378,6 +349,7 @@ body{
 .audit-details {
   margin-top: 1.5rem;
 }
+
 h1 {
   font-size: 2.5rem;
   font-weight: 700;
@@ -404,13 +376,12 @@ h1::after {
   box-shadow: 0 2px 8px rgba(123, 31, 162, 0.4);
 }
 
-/* For smaller screens */
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
     margin: 1.2rem 0;
   }
-  
+
   h1::after {
     width: 60px;
     height: 3px;
