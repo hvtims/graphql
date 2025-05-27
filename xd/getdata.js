@@ -27,6 +27,7 @@ export async function Getcredontial (){
         }
 }
   `
+
   const jwt = localStorage.getItem("jwt")
   const response  = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql',{
 
@@ -46,9 +47,29 @@ export async function Getcredontial (){
   const rawamount = tki.data.transaction_aggregate.aggregate.sum.amount;
   let amount = (rawamount/1000).toFixed(0) + "kB"
   const campus = tki.data.user[0].campus
-  const region = tki.data.user[0].attrs.addressRegion  
-  renderUserProfile(login , fname , lname , email ,amount , campus,region)
+  const region = tki.data.user[0].attrs.addressRegion 
+  const profileimage = "https://discord.zone01oujda.ma//assets/pictures/" + login + ".jpg"
+//  checkImageAvailability("thatim", (isAvailable) => {
+//   if (isAvailable) {
+//     console.log("Image exists");
+//   } else {
+//     console.log("Image not found");
+//   }
+// });
+
+  
+  console.log(profileimage);
+   
+  renderUserProfile(login , fname , lname , email ,amount , campus,region, profileimage)
 }
+// function checkImageAvailability(login, callback) {
+//   const img = new Image();
+//   img.onload = () => callback(true);   // Image loaded (200)
+//   img.onerror = () => callback(false); // Image failed (404 or blocked)
+//   img.src = `https://discord.zone01oujda.ma/assets/pictures/${login}.jpg`;
+// }
+
+
 //---------------------- AUDIT QUERY
 export async function Getauditdata() {
   const audit_query = `

@@ -1,22 +1,36 @@
-export function renderUserProfile(login, firstName, lastName, email, xp, campus, region) {
-  const root = document.getElementById('profile-root')
-  if (!root) return
-  root.innerHTML = `
-      <h1> Welcome Dear ${firstName} </h1>
-    <div class="auth-form-container">
-      <div class="auth-form">
-        <h2>My Zone01 Profile</h2>
-        <p class="profile-row"><strong>Login:</strong> ${login}</p>
-        <p class="profile-row"><strong>First Name:</strong> ${firstName}</p>
-        <p class="profile-row"><strong>Last Name:</strong> ${lastName}</p>
-        <p class="profile-row"><strong>Email:</strong> ${email}</p>
-        <p class="profile-row"><strong>Campus:</strong> ${campus}</p>
-        <p class="profile-row"><strong>Xp:</strong> ${xp}</p>
-        <p class="profile-row"><strong>Region:</strong> ${region}</p>
-      </div>
-    </div>`
-}
+export function renderUserProfile(login, firstName, lastName, email, xp, campus, region, profileImage) {
+ const root = document.getElementById('profile-root');
+  if (!root) return;
 
+  root.innerHTML = `
+    <section class="profile-page-container">
+      <article class="profile-card fade-in">
+        <div class="profile-avatar pulse">
+          <img
+            src="${profileImage}"
+            alt="${firstName}'s profile picture"
+            class="avatar-img"
+            onerror="this.src='https://ui-avatars.com/api/?name=${firstName}+${lastName}&background=7b1fa2&color=fff&size=150'"
+          >
+        </div>
+
+        <h1>
+          Welcome&nbsp;<span class="accent-text">${firstName}</span>
+        </h1>
+
+        <div class="profile-grid">
+          <div class="profile-row"><strong>Login: </strong><span>${login}</span></div>
+          <div class="profile-row"><strong>First Name: </strong><span>${firstName}</span></div>
+          <div class="profile-row"><strong>Last Name: </strong><span>${lastName}</span></div>
+          <div class="profile-row"><strong>Email: </strong><span>${email}</span></div>
+          <div class="profile-row"><strong>Campus: </strong><span>${campus}</span></div>
+          <div class="profile-row"><strong>XP: </strong><span>${xp}</span></div>
+          <div class="profile-row"><strong>Region: </strong><span>${region}</span></div>
+        </div>
+      </article>
+    </section>
+  `;
+}
 export function renderAuditData(total, success, fail, winrate, loserate) {
   const root = document.getElementById('audit-root')
   if (!root) return
