@@ -1,5 +1,6 @@
 import { renderUserProfile } from "./render.js";
 import  { renderAuditData } from "./render.js";
+import {renderSkillData}from "./render.js"
 //--------------------- DATA QUERY
 export async function Getcredontial (){
   const query_data = `
@@ -106,10 +107,11 @@ export async function Getauditdata() {
   const loserate  = ((fail /tottal_filtered_audits.length)*100).toFixed(1) + "%"
   const total_audits = tottal_filtered_audits.length
   renderAuditData(total_audits, succes, fail, winrate, loserate)
+  Getskillsdata()
 }
 
 
-  export async function Getskillsdata(){
+export async function Getskillsdata(){
       const graph_query = `
                 {
   transaction(
@@ -133,5 +135,20 @@ export async function Getauditdata() {
         body : JSON.stringify({query : graph_query})
       })
       const tki = await response.json()
-      console.log(tki)
+      let ok = deduplicateByHighestAmount(tki.data.transaction)
+     // console.log(ok)
+      renderSkillData(ok)
   }
+
+  function deduplicateByHighestAmount(arr) {
+    const map = new Map();
+  
+    for (const item of arr) {
+      if (!map.has(item.type) || map.get(item.type).amount < item.amount) {
+        map.set(item.type, item);
+      }
+    }
+  
+    return Array.from(map.values());
+  }
+  
