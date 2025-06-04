@@ -39,17 +39,23 @@ export function renderAuditData(total, success, fail, winrate, loserate) {
       <div class="auth-form">
         <h2>Audit Statistics</h2>
         <div class="win-rate-display">${winrate}</div>
-        <div class="audit-progress">
-          <div class="progress-track">
-            <div class="win-progress" style="width: ${winrate}"></div>
-            <div class="lose-progress" style="width: ${loserate}"></div>
-          </div>
-          <div class="progress-marks">
-            <span>0%</span>
-            <span>50%</span>
-            <span>100%</span>
-          </div>
-        </div>
+
+
+     <svg width="100%" height="60" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="3">
+  <!-- Background Track -->
+  <rect x="0" y="5" width="100" height="6" fill="#e0e0e0" rx="3" />
+  
+  <!-- Win Progress (adjust width with ${winrate}) -->
+  <rect x="0" y="5" width="${winrate}" height="6" fill="#4caf50" rx="3" />
+
+  <!-- Lose Progress (placed after win) -->
+  <rect x="${winrate}" y="5" width="${loserate}" height="6" fill="#f44336" rx="0" />
+
+  <!-- Labels -->
+  <text x="0" y="18" fill="#000">0%</text>
+  <text x="47.5" y="18" fill="#000">50%</text>
+  <text x="94" y="18" fill="#000">100%</text>
+</svg>
         <div class="audit-details">
           <p class="profile-row"><strong>Total Audits:</strong> ${total}</p>
           <p class="profile-row"><strong>Success:</strong> ${success}</p>
