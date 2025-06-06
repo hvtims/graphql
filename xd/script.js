@@ -76,4 +76,14 @@ async function sendlogindata(username, password) {
 }
 
 
-document.addEventListener('DOMContentLoaded', showAuthFormLogin);
+document.addEventListener('DOMContentLoaded', ()=>{
+    const jwt = localStorage.getItem('jwt')
+    if (jwt){
+      showlogedin()
+       Getcredontial()
+       Getauditdata()
+    }else{
+      showAuthFormLogin()
+    }
+
+});

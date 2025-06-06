@@ -1,34 +1,48 @@
+import { showNotification } from "./utils.js";
+
 export function renderUserProfile(login, firstName, lastName, email, xp, campus, region, profileImage) {
   const root = document.getElementById('profile-root');
   if (!root) return;
 
   root.innerHTML = `
-    <section class="profile-page-container">
-      <article class="profile-card fade-in">
-        <div class="profile-avatar pulse">
-          <img
-            src="${profileImage}"
-            alt="${firstName}'s profile picture"
-            class="avatar-img"
-            onerror="this.src='https://ui-avatars.com/api/?name=${firstName}+${lastName}&background=7b1fa2&color=fff&size=150'"
-          >
-        </div>
+     <section class="profile-page-container" style="position: relative;">
+    <button 
+      id="logoutBtn" 
+      style="position: absolute; top: 20px; right: 20px; padding: 8px 16px; background-color: #7b1fa2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      Log Out
+    </button>
 
-        <h1>
-          Welcome&nbsp;<span class="accent-text">${firstName}</span>
-        </h1>
-        <div class="profile-grid">
-          <div class="profile-row"><strong>Login:</strong><span>${login}</span></div>
-          <div class="profile-row"><strong>First Name:</strong><span>${firstName}</span></div>
-          <div class="profile-row"><strong>Last Name:</strong><span>${lastName}</span></div>
-          <div class="profile-row"><strong>Email:</strong><span>${email}</span></div>
-          <div class="profile-row"><strong>Campus:</strong><span>${campus}</span></div>
-          <div class="profile-row"><strong>XP:</strong><span class="xp-value">${xp}</span></div>
-          <div class="profile-row"><strong>Region:</strong><span>${region}</span></div>
-        </div>
-      </article>
-    </section>
-  `;
+    <article class="profile-card fade-in">
+      <div class="profile-avatar pulse">
+        <img
+          src="${profileImage}"
+          alt="${firstName}'s profile picture"
+          class="avatar-img"
+          onerror="this.src='https://ui-avatars.com/api/?name=${firstName}+${lastName}&background=7b1fa2&color=fff&size=150'"
+        >
+      </div>
+
+      <h1>
+        Welcome&nbsp;<span class="accent-text">${firstName}</span>
+      </h1>
+      <div class="profile-grid">
+        <div class="profile-row"><strong>Login:</strong><span>${login}</span></div>
+        <div class="profile-row"><strong>First Name:</strong><span>${firstName}</span></div>
+        <div class="profile-row"><strong>Last Name:</strong><span>${lastName}</span></div>
+        <div class="profile-row"><strong>Email:</strong><span>${email}</span></div>
+        <div class="profile-row"><strong>Campus:</strong><span>${campus}</span></div>
+        <div class="profile-row"><strong>XP:</strong><span class="xp-value">${xp}</span></div>
+        <div class="profile-row"><strong>Region:</strong><span>${region}</span></div>
+      </div>
+    </article>
+  </section>
+`;
+  document.getElementById('logoutBtn').addEventListener('click' , () =>{
+        localStorage.removeItem('jwt')
+      showNotification("logged out")
+        location.reload()
+  })
+
 }
 
 export function renderAuditData(total, success, fail, winrate, loserate) {
