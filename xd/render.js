@@ -53,7 +53,7 @@ export function renderAuditData(total, success, fail, winrate, loserate) {
     <div class="stats-container">
       <div class="stats-card">
         <h2>Audit Statistics</h2>
-        <div class="win-rate-display">${winrate}% Success Rate</div>
+        <div class="win-rate-display">${winrate} Success Rate</div>
         
         <div class="progress-container">
           <div class="progress-bar">
