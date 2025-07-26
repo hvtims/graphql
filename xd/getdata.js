@@ -34,7 +34,11 @@ export async function Getcredontial() {
   if (!jwt) {
     showAuthFormLogin();
     const root = document.getElementById("root");
+    const profiledata = document.getElementById("profile-root")
+    const aditroot = document.getElementById("audit-root")
+    aditroot.innerHTML =""
     root.innerHTML = "";
+    profiledata.innerHTML =""
     return;
   }
   const response = await fetch(
@@ -76,10 +80,20 @@ export async function Getcredontial() {
 
   if (campus == null) {
     localStorage.clear();
-    const root = document.getElementById("root");
-    root.innerHTML = "";
-    showAuthFormLogin();
-    showNotification("the user is not enrolled in the module right now");
+    // <div id="profile-root"></div>
+    // <div id="profile-informations"></div>
+    // <div id="audit-root"></div>
+    const profileroot = document.getElementById("profile-root")
+    const profileinformations = document.getElementById("profile-informations")
+    const aditroot = document.getElementById("audit-root")
+    const skillroot = document.getElementById("skill-root")
+    profileroot.innerHTML =""
+    profileinformations.innerHTML =""
+    aditroot.innerHTML =""
+    skillroot.innerHTML =""
+    location.reload()
+    showNotification("the user doesnt exist")
+    showAuthFormLogin()
     return;
   }
 

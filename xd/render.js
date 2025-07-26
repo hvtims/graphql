@@ -66,11 +66,10 @@ export function renderAuditData(total, success, fail, winrate, loserate) {
   const root = document.getElementById("audit-root");
   if (!root) return;
 
-  // winrate and loserate are expected as percentages, e.g. '70%' and '30%'
-  // We need numeric pixel widths for SVG inside 300px total width:
+
   const totalBarWidth = 300;
 
-  // Convert percentages strings like '70%' to numbers:
+
   const winPercent = parseFloat(winrate);
   const losePercent = parseFloat(loserate);
 
@@ -131,39 +130,39 @@ export function renderSkillData(skills) {
   const cleanedSkills = Array.from(map.values())
   const maxAmount = Math.max(...cleanedSkills.map((s) => s.amount))
 
-  // Enhanced responsive sizing calculations
+
   const isMobile = window.innerWidth < 768
   const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024
 
-  // Dynamic bar sizing based on screen size and number of skills
+
   const baseBarWidth = isMobile ? 40 : isTablet ? 60 : 80
   const barWidth = Math.max(baseBarWidth, Math.min(120, (window.innerWidth - 100) / cleanedSkills.length - 20))
   const barSpacing = isMobile ? 15 : isTablet ? 25 : 35
 
-  // Chart dimensions with better mobile optimization
+
   const baseChartHeight = isMobile ? 300 : isTablet ? 400 : 500
   const chartHeight = Math.min(baseChartHeight, window.innerHeight * 0.4)
 
-  // Calculate total width with padding
+
   const totalBarsWidth = cleanedSkills.length * (barWidth + barSpacing) - barSpacing
   const chartPadding = 40
   const chartWidth = Math.max(totalBarsWidth + chartPadding * 2, 300)
 
-  // Dynamic font sizes based on bar width and screen size
+
   const amountFontSize = Math.max(12, Math.min(18, barWidth * 0.25))
   const labelFontSize = Math.max(10, Math.min(16, barWidth * 0.2))
 
-  // Enhanced text positioning to prevent overflow
+
   const textPadding = 10
   const labelOffset = 25
 
   const svgBars = cleanedSkills
     .map((skill, i) => {
-      const height = Math.max(10, (skill.amount / maxAmount) * (chartHeight - 60)) // Reserve space for labels
+      const height = Math.max(10, (skill.amount / maxAmount) * (chartHeight - 60)) 
       const x = chartPadding + i * (barWidth + barSpacing)
       const y = chartHeight - height - labelOffset
 
-      // Ensure text doesn't overflow
+
       const amountY = Math.max(amountFontSize + 5, y - textPadding)
       const labelY = chartHeight - 5
 
@@ -212,8 +211,8 @@ export function renderSkillData(skills) {
     })
     .join("")
 
-  // Enhanced SVG with better viewBox and responsive design
-  const svgHeight = chartHeight + 40 // Extra space for labels
+
+  const svgHeight = chartHeight + 40 
   const viewBoxWidth = chartWidth
   const viewBoxHeight = svgHeight
 
@@ -272,7 +271,7 @@ export function renderSkillData(skills) {
     </div>
   `
 
-  // Add enhanced interactivity
+
   const skillGroups = root.querySelectorAll(".skill-group")
   skillGroups.forEach((group, index) => {
     const rect = group.querySelector(".skill-bar")
@@ -292,9 +291,9 @@ export function renderSkillData(skills) {
     })
   })
 
-  // Add resize listener for better responsiveness
+
   const resizeHandler = () => {
-    // Debounce resize events
+
     clearTimeout(window.skillChartResizeTimeout)
     window.skillChartResizeTimeout = setTimeout(() => {
       renderSkillData(skills)
@@ -303,7 +302,6 @@ export function renderSkillData(skills) {
 
   window.addEventListener("resize", resizeHandler)
 
-  // Clean up listener when component unmounts
   return () => {
     window.removeEventListener("resize", resizeHandler)
     clearTimeout(window.skillChartResizeTimeout)
