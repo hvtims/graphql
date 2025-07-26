@@ -29,6 +29,12 @@ export async function Getcredontial (){
   `
 
   const jwt = localStorage.getItem("jwt")
+   if (!jwt) {
+    showAuthFormLogin();
+    const root = document.getElementById("root");
+    root.innerHTML = "";
+    return;
+  }
   const response  = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql',{
 
       method : "POST",
@@ -40,6 +46,13 @@ export async function Getcredontial (){
 
   })
   const tki = await response.json()
+  if (tki.errors != null) {
+    localStorage.clear();
+    const root = document.getElementById("root");
+    root.innerHTML = "";
+    showAuthFormLogin();
+    return;
+  }
   const login = tki.data.user[0].login
   const email = tki.data.user[0].email
   const fname = tki.data.user[0].firstName
@@ -57,7 +70,14 @@ export async function Getcredontial (){
 //   }
 // });
 
-  
+    if (campus == null) {
+    localStorage.clear();
+    const root = document.getElementById("root");
+    root.innerHTML = "";
+    showAuthFormLogin();
+    showNotification("the user is not enrolled in the module right now");
+    return;
+  }
   console.log(profileimage);
    
   renderUserProfile(login , fname , lname , email ,amount , campus,region, profileimage)
@@ -82,6 +102,12 @@ export async function Getauditdata() {
 }
   `
   const jwt = localStorage.getItem("jwt")
+    if (!jwt) {
+    const root = document.getElementById("root");
+    root.innerHTML = "";
+    showAuthFormLogin();
+    return;
+  }
   const response  = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql',{
 
       method : "POST",
@@ -93,6 +119,13 @@ export async function Getauditdata() {
 
   })
   const tki = await response.json()
+    if (tki.errors != null) {
+    localStorage.clear();
+    const root = document.getElementById("root");
+    root.innerHTML = "";
+    showAuthFormLogin();
+    return;
+  }
   const tottal_filtered_audits = tki.data.user[0].audits.filter(audit => audit.grade !== null);
   let succes = 0
   let fail = 0  
@@ -126,6 +159,12 @@ export async function Getskillsdata(){
 }
       `
       const jwt = localStorage.getItem('jwt')
+       if (!jwt) {
+    const root = document.getElementById("root");
+    root.innerHTML = "";
+    showAuthFormLogin();
+    return;
+  }
       const response = await fetch ('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql',{
         method : "POST",
         headers :{
@@ -135,6 +174,13 @@ export async function Getskillsdata(){
         body : JSON.stringify({query : graph_query})
       })
       const tki = await response.json()
+        if (tki.errors != null) {
+    localStorage.clear();
+    const root = document.getElementById("root");
+    root.innerHTML = "";
+    showAuthFormLogin();
+    return;
+  }
       let ok = deduplicateByHighestAmount(tki.data.transaction)
      // console.log(ok)
       renderSkillData(ok)
