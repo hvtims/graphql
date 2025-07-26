@@ -1,10 +1,13 @@
 import {Getcredontial,Getauditdata } from "./getdata.js"
+import { Clearbody } from "./render.js";
 import { showNotification } from "./utils.js";
+import {Campus} from "./getdata.js"
 function showlogedin(){
   const root = document.getElementById("root")
   root.innerHTML= ''
 }
 export function showAuthFormLogin() {
+  Clearbody()
   const root = document.getElementById('root');
   if (!root) {
     console.error("Element with id 'root' not found.");
@@ -52,8 +55,7 @@ async function sendlogindata(username, password) {
   })
   const data = await res.json()
   if (res.ok){  
-
-    console.log("watkiiiiiiiiiii")
+      console.log("watkiiiiiiiiiii")
      localStorage.setItem('jwt',data)
        showlogedin()
        Getcredontial()

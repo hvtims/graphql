@@ -1,9 +1,10 @@
-import { renderUserProfile } from "./render.js";
+import { renderUserProfile , Clearbody} from "./render.js";
 import { renderAuditData } from "./render.js";
 import { renderSkillData , renderUserInfo} from "./render.js";
 import { showAuthFormLogin } from "./script.js";
 import { showNotification } from "./utils.js";
 //--------------------- DATA QUERY
+export let Campus = ""
 export async function Getcredontial() {
   const query_data = `
     {
@@ -66,7 +67,8 @@ export async function Getcredontial() {
   const lname = res.data.user[0].lastName;
   const rawamount = res.data.transaction_aggregate.aggregate.sum.amount;
   let amount = (rawamount / 1000).toFixed(0) + "kB";
-  const campus = res.data.user[0].campus;
+   Campus = res.data.user[0].campus;
+
   const region = res.data.user[0].attrs.addressRegion;
   const profileimage =
     "https://discord.zone01oujda.ma//assets/pictures/" + login + ".jpg";
@@ -78,19 +80,12 @@ export async function Getcredontial() {
   //   }
   // });
 
-  if (campus == null) {
+  if (Campus == null) {
     localStorage.clear();
     // <div id="profile-root"></div>
     // <div id="profile-informations"></div>
     // <div id="audit-root"></div>
-    const profileroot = document.getElementById("profile-root")
-    const profileinformations = document.getElementById("profile-informations")
-    const aditroot = document.getElementById("audit-root")
-    const skillroot = document.getElementById("skill-root")
-    profileroot.innerHTML =""
-    profileinformations.innerHTML =""
-    aditroot.innerHTML =""
-    skillroot.innerHTML =""
+    Clearbody()
     location.reload()
     showNotification("the user doesnt exist")
     showAuthFormLogin()
@@ -98,13 +93,14 @@ export async function Getcredontial() {
   }
 
   //email, xp, campus, region
-  renderUserInfo(email ,amount,campus ,region )
+  renderUserInfo(email ,amount,Campus ,region )
   renderUserProfile(
     login,
     fname,
     lname,
     profileimage
   );
+  return await Campus
 }
 // function checkImageAvailability(login, callback) {
 //   const img = new Image();

@@ -1,3 +1,4 @@
+import { showAuthFormLogin } from "./script.js"
 import { showNotification } from "./utils.js"
 
 export function renderUserProfile(login, firstName, lastName ,profileImage) {
@@ -36,10 +37,21 @@ export function renderUserProfile(login, firstName, lastName ,profileImage) {
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("jwt")
     showNotification("logged out")
-    location.reload()
+     Clearbody()
+    showAuthFormLogin()
+    // location.reload()
   })
 }
-
+export function Clearbody(){
+   const profileroot = document.getElementById("profile-root")
+    const profileinformations = document.getElementById("profile-informations")
+    const aditroot = document.getElementById("audit-root")
+    const skillroot = document.getElementById("skill-root")
+    profileroot.innerHTML =""
+    profileinformations.innerHTML =""
+    aditroot.innerHTML =""
+    skillroot.innerHTML =""
+}
 export function renderUserInfo(email, xp, campus, region) {
   const root = document.getElementById("profile-informations")
   if (!root) return
