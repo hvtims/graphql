@@ -4,7 +4,7 @@ function showlogedin(){
   const root = document.getElementById("root")
   root.innerHTML= ''
 }
-function showAuthFormLogin() {
+export function showAuthFormLogin() {
   const root = document.getElementById('root');
   if (!root) {
     console.error("Element with id 'root' not found.");
